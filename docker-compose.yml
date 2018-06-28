@@ -1,0 +1,23 @@
+version: "3"
+services:
+  sq:
+    build: ./squid
+    hostname: squid
+    volumes:
+      - ./squid:/tmp/host
+    privileged: true
+  ab:
+    build: ./ab
+    hostname: ab
+    volumes:
+      - ./ab:/tmp/host
+  web1:
+    image: nginx:alpine
+  web2:
+    image: nginx:alpine
+  web3:
+    image: nginx:alpine
+  web4:
+    image: nginx:alpine
+  web5:
+    image: nginx:alpine
