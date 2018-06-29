@@ -2,7 +2,9 @@
 
 set -e
 
+sysctl -a | grep ip_local_port_range
 sysctl -p
+sysctl -a | grep ip_local_port_range
 
 CHOWN=$(/usr/bin/which chown)
 SQUID=$(/usr/bin/which squid)
@@ -20,9 +22,10 @@ echo "Initializing cache..."
 
 # Launch squid
 echo "Starting Squid..."
-"$SQUID" -NYC 1 &
+"$SQUID" &
 
-while true; do echo "----------------";netstat -nat | awk '{print $6}' | sort | uniq -c | sort -nr; sleep 3; done
+while true; do echo "----------------";date >> /tmp/host/netstat.txt; netstat -nat >> /tmp/host/netstat.txt; netstat -nat | awk '{print $4}' | sort | uniq -c | sort -nr; sleep 3; done
+# while true; do netstat -nat ; sleep 3; done
 
 
 

@@ -6,9 +6,19 @@ services:
     volumes:
       - ./squid:/tmp/host
     privileged: true
-  ab:
+  ab1:
     build: ./ab
-    hostname: ab
+    hostname: ab1
+    volumes:
+      - ./ab:/tmp/host
+  ab2:
+    build: ./ab
+    hostname: ab2
+    volumes:
+      - ./ab:/tmp/host
+  ab3:
+    build: ./ab
+    hostname: ab3
     volumes:
       - ./ab:/tmp/host
   web1:
